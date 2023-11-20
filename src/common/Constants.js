@@ -1,0 +1,422 @@
+global.DrawerNeedUpdate = false
+global.showAds = true
+
+export const APPNAME = 'Eciept Mobile';
+export const APPICON = 'data:image/png;base64,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aAAIJNAAEEigASCQQANAIIEGgEACDQCBBBoAAgk0AAQSaAAIJNAAEEigASCQQANAIIEGgEACDQCBBBoAAgk0AAQSaAAIJNAAEEigASCQQANAIIEGgEACDQCBBBoAAgk0AAQSaAAIJNAAEEigASCQQANAIIEGgEACDQCBBBoAAgk0AAQSaAAIJNAAEEigASCQQANAIIEGgEACDQCBBBoAAgk0AAQSaAAIJNAAEEigASDQXosCtz394HWTgKp6cOI/+8xh9wk09F57bNEo4LZHzWH3OcUNAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAA0AggQaAQAINAIEEGgACCTQABBJoAAgk0AAQSKABIJBAB7i+9nDrIwBgq2sCHeD62lTrIwBgq2WBDvDZfx9sfQQAbLUi0AE+/OJI6yMAYKvLAh3i6udPtj4CAL6yJNAh/vLpd1ofAQC3rU7OLAp0ir/+S6ABuGWhPGaVo7uTW6QBqKr5Eugsf/rnd1sfAUDrLnWnt0ugs7z/2ZN20QBtO7tx9AId5s1PXqzPv/RcNECDLkzOLF7eOGyBDtO9tOTC315sfQwArbkyObN4dvMxC3Sg7jT37298v/UxALRitapObj9WgQ7VBfrtlWdbHwPAuLsV58mZxZXtxynQwbrr0W9+8sPWxwAwrq5U1YnN1503E+hwb68cq19c+0nd8ElKgHFyod85L9/tmPa89MZb65Y834EHbtbLh9+pU4fea30UAKPsWlWd3njW+ZsI9Ig5Mrlapx55t144eLX2T9xsfRwAo+JS94awyZnF+Xv9vQI9wp576IM6duCjembfjXp633XBBsjRXV/uTl93O+WFbzqVfTd7Lebo6h7H8uYx4Fvw+nB2cM5gd5ebxAAgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAEEmgACCTQABBIoAEgkEADQCCBBoBAAg0AgQQaAAIJNAAE6gK9amEA2OSyYey+CQsBwDYrBrL7JiwEANvoQgA7aAC2GM4OdCFAF+il1ocAwB2XjCLDxHB2sORGMQB6CwaRYeMxKwsCQOlBjo1An299EADUH4ezg2VjyHAr0P0NAa47ALTNZi3I5jeJnW19GAAN+11/TxIh7gS630W/bmEAmrNqk5Znz/r6+pYfNZgbdqE+3vpgABry4+HswM1hYXb6WMbJqrrW9FQA2vEzcc70tUAPZwfdK95mPBsNMPa6685uDAu14+cm++vRR6vqSusDAhhTrw5nB6ctbq67fg+630l3p7svtD4kgDHSXcKcHs4O5i1qtq/dJLaTwdzwZP98nJvHAEZX96TO+X4DRrh7CvSGwdxwpr8V/3kLCzASVvsN1ry3hI2W+wr0hsHc8Gh/+rv7O2FnDRBjtf+McPfSkSUvHxlRVfU/6dyKTTtFdd4AAAAASUVORK5CYII='
+export const GOOGLEICON = 'data:image/png;base64,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';
+
+export const SUCCESS = 'SUCCESS'
+export const ERROR = 'ERROR'
+
+export const ASYNC_DATA_TYPE = {
+  VALUE: 'VALUE',
+  JSON: 'JSON'
+};
+
+export const ASYNC_DATA_KEY = {
+  LSUSERTOKEN: 'LSUSERTOKEN',
+  LSUSERTENANT: 'LSUSERTENANT',
+  LSTOKENEXPIRE: 'LSTOKENEXPIRE',
+  LSUSERREFRESHTOKEN: 'LSUSERREFRESHTOKEN',
+  SSUN: 'SSUN',
+  SSUR: 'SSUR',
+  ISALREADYRATE: 'isAlreadyRate',
+  APP_OPEN_COUNT: 'appOpenCount'
+};
+
+export const QUERY = {
+  ALL_USER: 'ALL_USER',
+  ALL_TENANT: 'ALL_TENANT',
+  OWN_INFO: 'OWN_INFO',
+  USER_LANGUAGE:'USER_LANGUAGE',
+  TENANT_INFO: 'TENANT_INFO',
+  ALL_PACKAGE_DETAIL: 'ALL_PACKAGE_DETAIL',
+  PACKAGE_DETAIL: 'PACKAGE_DETAIL',
+  PACKAGE_LIST: 'PACKAGE_LIST',
+  ALL_SERVICES: 'ALL_SERVICES',
+  ALL_SERVICES_GROUP: 'ALL_SERVICES_GROUP',
+  SERVICES_GROUP: 'SERVICES_GROUP',
+  ALL_TENANT_USER: 'ALL_TENANT_USER',
+  // TENANT_LOGO:'TENANT_LOGO',
+
+  SCHEDULER_JOB_INFO_ALL: 'SCHEDULER_JOB_INFO_ALL',
+  SCHEDULER_LOGS: 'SCHEDULER_LOGS',
+
+  TENANT_NOTIFICATION: 'TENANT_NOTIFICATION',
+
+  ALL_CATEGORY: 'ALL_CATEGORY',
+  ALL_CATEGORY_NP: 'ALL_CATEGORY_NP',
+  ALL_CLIENT: 'ALL_CLIENT',
+  ALL_CLIENT_NP: 'ALL_CLIENT_NP',
+  SINGLE_PRODUCT: 'SINGLE_PRODUCT',
+  ALL_PRODUCT: 'ALL_PRODUCT',
+  ALL_PRODUCT_NP: 'ALL_PRODUCT_NP',
+  ALL_CURRENCY: 'ALL_CURRENCY',
+  ALL_CURRENCY_NP: 'ALL_CURRENCY_NP',
+  ALL_TERMS: 'ALL_TERMS',
+  ALL_TERMS_NP: 'ALL_TERMS_NP',
+  ALL_TERMS_TYPE: 'ALL_TERMS_TYPE',
+  ALL_TERMS_TYPE_NP: 'ALL_TERMS_TYPE_NP',
+  ALL_UOM: 'ALL_UOM',
+  ALL_UOM_NP: 'ALL_UOM_NP',
+  ALL_SETTINGS: 'ALL_SETTING',
+  INVOICE: 'INVOICE',
+  ALL_INVOICE: 'ALL_INVOICE',
+  OPEN_INVOICE_NUMBER: 'OPEN_INVOICE_NUMBER',
+  DELIVERY_ORDER: 'DELIVERY_ORDER',
+  CHECK_LINKED_DELIVERY_ORDER: 'CHECK_LINKED_DELIVERY_ORDER',
+  ALL_DELIVERY_ORDER: 'ALL_DELIVERY_ORDER',
+
+  INVENTORY_ITEM: 'INVENTORY_ITEM',
+  INVENTORY_ITEMS: 'INVENTORY_ITEMS',
+  INVENTORY_LIST: 'INVENTORY_LIST',
+  INVENTORY_TRANS: 'INVENTORY_TRANS',
+
+
+  PAYMENT_STATUS: 'PAYMENT_STATUS',
+  PAYMENT_TRANSACTION: 'PAYMENT_TRANSACTION',
+  PRICE_LIST: 'PRICE_LIST',
+
+
+
+  DASHBOARD_OUTSTANDING_INVOICE: 'DASHBOARD_OUTSTANDING_INVOICE',
+  DASHBOARD_OVERDUE_INVOICE: 'DASHBOARD_OVERDUE_INVOICE',
+  DASHBOARD_INVOICE_HISTORY: 'DASHBOARD_INVOICE_HISTORY',
+
+  DASHBOARD_OUTSTANDING_DO: 'DASHBOARD_OUTSTANDING_DO',
+  DASHBOARD_OVERDUE_DO: 'DASHBOARD_OVERDUE_DO',
+  DASHBOARD_DO_HISTORY: 'DASHBOARD_DO_HISTORY',
+  DASHBOARD_INV_STATUS: 'DASHBOARD_INV_STATUS',
+  DASHBOARD_LOW_INV_LIST: 'DASHBOARD_LOW_INV_LIST',
+
+}
+
+
+export const COLORS = {
+  PRIMARY: "#4B86B4",
+  SECONDRY: "#ADCBE3",
+  DARK_BLUE: "#2A4D69",
+  LIGHTGREY: "#E7EFF6",
+  LIGHTBLUE: "#63ACE5",
+  WHITE: "#FFFFFF",
+  BLACK: "#000000",
+  YELLOW: "#FAAF40",
+  ERRORRED: "#EE4035",
+  GREY: "#696969",
+  TEXT_COLOR: "#2A4D69",
+  GREEN: "#10B093",
+  ORANGE: "#EC6E20",
+  LIGHTYELLOW: "#FFF8D8",
+}
+
+export const STYLE = {
+  BORDERWIDTH: 1,
+  BORDERCOLOR: COLORS.YELLOW
+}
+
+export const TEXT_SIZE = {
+  SMALL: 14,
+  NORMAL: 16,
+  BIG: 18,
+  TITLE: 22,
+}
+
+export const MENU_ICON_SIZE = {
+  SMALL: 24,
+  NORMAL: 26,
+  BIG: 30
+}
+
+export const DATE_PICKER = {
+  minDate: "01/01/2020",
+  maxDate: "01/01/2030"
+}
+
+export const HEADER_SCREEN_OPTIONS = {
+  headerStyle: { backgroundColor: COLORS.PRIMARY },
+  headerTintColor: COLORS.WHITE,
+  headerTitleStyle: { fontWeight: 'bold' }
+}
+
+export const TABBAR_OPTIONS = {
+  tabBarIndicatorStyle: [
+    {
+      backgroundColor: COLORS.PRIMARY
+    }
+  ]
+}
+
+export const CURRENCY_OPTIONS = {
+  SGD: 'SGD',
+  USD: 'USD',
+  EUR: 'EUR',
+  JPY: 'JPY',
+  MYR: 'MYR',
+  GBP: 'GBP',
+  AUD: 'AUD',
+  CAD: 'CAD',
+  CHF: 'CHF',
+  CNH: 'CNH',
+  SEK: 'SEK',
+  NZD: 'NZD',
+}
+
+// export const UOM_OPTIONS = {
+//   PC: strings.UOM_PC,
+//   M: strings.UOM_M,
+//   M3: strings.UOM_M3 + strings.SQUARE_SYMBOL,
+//   KG: strings.UOM_KG,
+// }
+
+export const LANGUAGE_OPTIONS = {
+  en: 'English',
+  cn: '中文',
+  ms: 'Melayu',
+  sl: 'Slovenščina',
+}
+
+export const ORDER_PREFIX = {
+  PREFIX_INV: 'INV-',
+  PREFIX_DO: 'DO-',
+}
+
+export const ORDER_MID_STRING = {
+  '': '',
+  YY: 'YY',
+  YYMM: 'YYMM',
+}
+
+export const TERMS_TYPE = {
+  GENERAL: 'GENERAL',
+  PAYMENT: 'PAYMENT',
+  DELIVERY: 'DELIVERY',
+}
+
+export const ORDER_STATUS = {
+  ACTIVE: 'Active',
+  CLOSED: 'Closed',
+  GENERATED: 'GENERATED',
+  DELIVERED: 'DELIVERED',
+  TRANSIT: 'TRANSIT',
+  CANCELLED: 'CANCELLED',
+  SETTLED: 'SETTLED',
+  INVOICED: 'INVOICED',
+  DRAFT: 'DRAFT',
+}
+
+export const ORDER_COMPANY_TYPE = {
+  FROM: 'FROM',
+  TO: 'TO'
+}
+
+export const ORDER_TYPE = {
+  DO: 'DO',
+  INVOICE: 'INVOICE'
+}
+
+export const FILE_OPTIONS = {
+  PDF_DIRECTORY: 'Downloads',
+  BAK_DIRECTORY: 'Downloads',
+  BAK_FILENAME: 'Eceipt-Backup.bak'
+}
+
+export const ADMOB = {
+  APP_ID: "ca-app-pub-3700096911138124~5187845945",
+  BANNER_ADUNIT_ID: "ca-app-pub-3700096911138124/2561682604",
+  INTERSTITIAL_ADUNIT_ID: "ca-app-pub-3700096911138124/8915337965"
+};
+
+
+
+
+export const COUNTRY_LIST = {
+  AF: "Afghanistan",
+  AL: "Albania",
+  DZ: "Algeria",
+  AD: "Andorra",
+  AO: "Angola",
+  AG: "Antigua and Barbuda",
+  AR: "Argentina",
+  AM: "Armenia",
+  AU: "Australia",
+  AT: "Austria",
+  AZ: "Azerbaijan",
+  BS: "Bahamas",
+  BH: "Bahrain",
+  BD: "Bangladesh",
+  BB: "Barbados",
+  BY: "Belarus",
+  BE: "Belgium",
+  BZ: "Belize",
+  BJ: "Benin",
+  BT: "Bhutan",
+  BW: "Botswana",
+  BR: "Brazil",
+  BN: "Brunei Darussalam",
+  BG: "Bulgaria",
+  BF: "Burkina Faso",
+  BI: "Burundi",
+  CV: "Cabo Verde",
+  KH: "Cambodia",
+  CM: "Cameroon",
+  CA: "Canada",
+  CF: "Central African Republic",
+  TD: "Chad",
+  CL: "Chile",
+  CN: "China",
+  CO: "Colombia",
+  KM: "Comoros",
+  CG: "Congo",
+  CR: "Costa Rica",
+  HR: "Croatia",
+  CU: "Cuba",
+  CY: "Cyprus",
+  CZ: "Czechia",
+  DK: "Denmark",
+  DJ: "Djibouti",
+  DM: "Dominica",
+  DO: "Dominican Republic",
+  EC: "Ecuador",
+  EG: "Egypt",
+  SV: "El Salvador",
+  GQ: "Equatorial Guinea",
+  ER: "Eritrea",
+  EE: "Estonia",
+  SZ: "Eswatini",
+  ET: "Ethiopia",
+  FJ: "Fiji",
+  FI: "Finland",
+  FR: "France",
+  GA: "Gabon",
+  GM: "Gambia",
+  GE: "Georgia",
+  DE: "Germany",
+  GH: "Ghana",
+  GR: "Greece",
+  GD: "Grenada",
+  GT: "Guatemala",
+  GN: "Guinea",
+  GW: "Guinea-Bissau",
+  GY: "Guyana",
+  HT: "Haiti",
+  HN: "Honduras",
+  HU: "Hungary",
+  IS: "Iceland",
+  IN: "India",
+  ID: "Indonesia",
+  IR: "Iran",
+  IQ: "Iraq",
+  IE: "Ireland",
+  IL: "Israel",
+  IT: "Italy",
+  JM: "Jamaica",
+  JP: "Japan",
+  JO: "Jordan",
+  KZ: "Kazakhstan",
+  KE: "Kenya",
+  KI: "Kiribati",
+  KP: "Korea",
+  KW: "Kuwait",
+  KG: "Kyrgyzstan",
+  LA: "Lao",
+  LV: "Latvia",
+  LB: "Lebanon",
+  LS: "Lesotho",
+  LR: "Liberia",
+  LY: "Libya",
+  LI: "Liechtenstein",
+  LT: "Lithuania",
+  LU: "Luxembourg",
+  MG: "Madagascar",
+  MW: "Malawi",
+  MY: "Malaysia",
+  MV: "Maldives",
+  ML: "Mali",
+  MT: "Malta",
+  MH: "Marshall Islands",
+  MR: "Mauritania",
+  MU: "Mauritius",
+  MX: "Mexico",
+  FM: "Micronesia",
+  MD: "Moldova",
+  MC: "Monaco",
+  MN: "Mongolia",
+  ME: "Montenegro",
+  MA: "Morocco",
+  MZ: "Mozambique",
+  MM: "Myanmar",
+  NA: "Namibia",
+  NR: "Nauru",
+  NP: "Nepal",
+  NL: "Netherlands",
+  NZ: "New Zealand",
+  NI: "Nicaragua",
+  NE: "Niger",
+  NG: "Nigeria",
+  MK: "North Macedonia",
+  NO: "Norway",
+  OM: "Oman",
+  PK: "Pakistan",
+  PW: "Palau",
+  PA: "Panama",
+  PG: "Papua New Guinea",
+  PY: "Paraguay",
+  PE: "Peru",
+  PH: "Philippines",
+  PL: "Poland",
+  PT: "Portugal",
+  QA: "Qatar",
+  RO: "Romania",
+  RU: "Russian Federation",
+  RW: "Rwanda",
+  KN: "Saint Kitts and Nevis",
+  LC: "Saint Lucia",
+  VC: "Saint Vincent and the Grenadines",
+  WS: "Samoa",
+  SM: "San Marino",
+  ST: "Sao Tome and Principe",
+  SA: "Saudi Arabia",
+  SN: "Senegal",
+  RS: "Serbia",
+  SC: "Seychelles",
+  SL: "Sierra Leone",
+  SG: "Singapore",
+  SK: "Slovakia",
+  SI: "Slovenia",
+  SB: "Solomon Islands",
+  SO: "Somalia",
+  ZA: "South Africa",
+  SS: "South Sudan",
+  ES: "Spain",
+  LK: "Sri Lanka",
+  SD: "Sudan",
+  SR: "Suriname",
+  SE: "Sweden",
+  CH: "Switzerland",
+  SY: "Syrian Arab Republic",
+  TJ: "Tajikistan",
+  TZ: "Tanzania",
+  TH: "Thailand",
+  TL: "Timor-Leste",
+  TG: "Togo",
+  TO: "Tonga",
+  TT: "Trinidad and Tobago",
+  TN: "Tunisia",
+  TR: "Turkey",
+  TM: "Turkmenistan",
+  TV: "Tuvalu",
+  UG: "Uganda",
+  UA: "Ukraine",
+  AE: "United Arab Emirates",
+  GB: "United Kingdom",
+  US: "United States of America",
+  UY: "Uruguay",
+  UZ: "Uzbekistan",
+  VU: "Vanuatu",
+  VE: "Venezuela",
+  VN: "Viet Nam",
+  YE: "Yemen",
+  ZM: "Zambia",
+  ZW: "Zimbabwe",
+
+}

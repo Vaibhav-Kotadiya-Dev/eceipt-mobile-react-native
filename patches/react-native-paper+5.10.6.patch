@@ -1,0 +1,32 @@
+diff --git a/node_modules/react-native-paper/src/components/List/ListAccordion.tsx b/node_modules/react-native-paper/src/components/List/ListAccordion.tsx
+index 0674ed5..a4fa3fa 100644
+--- a/node_modules/react-native-paper/src/components/List/ListAccordion.tsx
++++ b/node_modules/react-native-paper/src/components/List/ListAccordion.tsx
+@@ -69,6 +69,7 @@ export type Props = {
+    * Style that is passed to the wrapping TouchableRipple element.
+    */
+   style?: StyleProp<ViewStyle>;
++  containerStyle?: StyleProp<ViewStyle>;
+   /**
+    * Style that is passed to Title element.
+    */
+@@ -166,6 +167,7 @@ const ListAccordion = ({
+   delayLongPress,
+   expanded: expandedProp,
+   accessibilityLabel,
++  containerStyle,
+   pointerEvents = 'none',
+ }: Props) => {
+   const theme = useInternalTheme(themeOverrides);
+@@ -217,9 +219,10 @@ const ListAccordion = ({
+     groupContext && id !== undefined
+       ? () => groupContext.onAccordionPress(id)
+       : handlePressAction;
++
+   return (
+     <View>
+-      <View style={{ backgroundColor: theme?.colors?.background }}>
++      <View style={containerStyle}>
+         <TouchableRipple
+           style={[theme.isV3 ? styles.containerV3 : styles.container, style]}
+           onPress={handlePress}
